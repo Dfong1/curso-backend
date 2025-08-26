@@ -1,16 +1,9 @@
 import Router from 'express';
-import { productManager } from './manager/products-manager.js';
+import { productManager } from '../manager/products-manager.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send("Hola mundo");
-})
-
-/**
- * !PRODUCTS ENDPOINTS
- */
-router.post('/api/products', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const data = req.body;
         if(!data.title || !data.description || !data.code || !data.price || !data.status || !data.stock || !data.category || !data.thumbnails) {
@@ -33,7 +26,7 @@ router.post('/api/products', async (req, res, next) => {
     }
 });
 
-router.get('/api/products', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const products = await productManager.getProducts();
         res.json(products);
@@ -42,7 +35,7 @@ router.get('/api/products', async (req, res, next) => {
     }
 });
 
-router.get('/api/products/:pid', async(req, res, next) => {
+router.get('/:pid', async(req, res, next) => {
     const pid = req.params.pid;
     try {
         const product = await productManager.getProductById(pid);
@@ -58,7 +51,7 @@ router.get('/api/products/:pid', async(req, res, next) => {
     }
 });
 
-router.put('/api/products/:pid', async (req, res, next) => {
+router.put('/:pid', async (req, res, next) => {
     const pid = req.params.pid;
     const updatedFields = req.body;
 
@@ -71,7 +64,7 @@ router.put('/api/products/:pid', async (req, res, next) => {
     }
 });
 
-router.delete('/api/products/:pid', async (req, res, next) => {
+router.delete('/:pid', async (req, res, next) => {
     const pid = req.params.pid;
 
     try {
@@ -82,6 +75,5 @@ router.delete('/api/products/:pid', async (req, res, next) => {
         next(error);
     }
 });
-
 
 export default router;

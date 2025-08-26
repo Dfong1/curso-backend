@@ -1,0 +1,35 @@
+<script>
+    console.log('Home view loaded');
+</script>
+<h2>Productos</h2>
+{{!-- render products --}}
+<div class="row">
+    {{#each products}}
+        <div class="col-md-4 col-sm-12 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product w-100">
+                        <div class="d-flex">
+                            <div class="justify-content-center align-items-center">
+                                <div class="" style="height: 150px;">
+                                    {{#if this.thumbnails.length}}
+                                        <img src="{{this.thumbnails.[0]}}" class="m-auto w-auto h-100" alt="{{this.title}}">
+                                    {{else}}
+                                        <p>No image available</p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>{{this.title}}</h3>
+                        <p><b>Precio:</b> {{this.price}}</p>
+                        <p>{{this.description}}</p>
+                        <p><b>Stock:</b> {{this.stock}}</p>
+                        <p><b>Categoría:</b> {{this.category}}</p>
+                        <button class="btn btn-primary w-100">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

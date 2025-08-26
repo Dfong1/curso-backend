@@ -1,10 +1,10 @@
 import Router from 'express';
-import { cartManager } from './manager/carts-manager.js';
+import { cartManager } from '../manager/carts-manager.js';
 
 const router = Router();
 
 //! CARTS ENDPOINTS
-router.post('/api/carts', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const data = req.body;
         
@@ -20,7 +20,7 @@ router.post('/api/carts', async (req, res, next) => {
     }
 });
 
-router.get('/api/carts/:cid', async (req, res, next) => {
+router.get('/:cid', async (req, res, next) => {
     const cid = req.params.cid;
     try {
         const cart = await cartManager.getCartById(cid);
@@ -35,7 +35,7 @@ router.get('/api/carts/:cid', async (req, res, next) => {
     }
 });
 
-router.post('/api/carts/:cid/product/:pid', async (req, res, next) => {
+router.post('/:cid/product/:pid', async (req, res, next) => {
     const cid = req.params.cid;
     const pid = req.params.pid;
 
