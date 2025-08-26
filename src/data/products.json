@@ -7,7 +7,9 @@
         "status": true,
         "stock": 45,
         "category": "Test",
-        "thumbnails": ["https://cloralex.com.mx/wp-content/uploads/2017/06/rendidor-covid-350x561.png"],
+        "thumbnails": [
+            "https://cloralex.com.mx/wp-content/uploads/2017/06/rendidor-covid-350x561.png"
+        ],
         "id": "135e7214-2a6a-443b-ba4f-82d309f1b50a"
     },
     {
@@ -18,7 +20,9 @@
         "status": true,
         "stock": 45,
         "category": "Test",
-        "thumbnails": ["https://www.mayoreototal.mx/cdn/shop/files/Captura_de_pantalla_2025-06-22_a_la_s_8.15.05_a.m._720x.png?v=1750602195"],
+        "thumbnails": [
+            "https://www.mayoreototal.mx/cdn/shop/files/Captura_de_pantalla_2025-06-22_a_la_s_8.15.05_a.m._720x.png?v=1750602195"
+        ],
         "id": "5b16f220-36f6-418b-84ef-471938fe269c"
     }
 ]

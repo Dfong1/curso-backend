@@ -1,5 +1,6 @@
 import Router from 'express';
 import { productManager } from '../manager/products-manager.js';
+import { socketServer } from '../server.js';
 
 const router = Router();
 
@@ -19,6 +20,9 @@ router.post('/', async (req, res, next) => {
         }
 
         const product = await productManager.createProduct(data);
+
+        socketServer.emit('newProduct', product);
+
         res.status(201).json(product);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -69,11 +73,16 @@ router.delete('/:pid', async (req, res, next) => {
 
     try {
         const result = await productManager.deleteProduct(pid);
+        socketServer.emit('deleteProduct', pid);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });
         next(error);
     }
+});
+
+router.get('/realTimeProducts', (req, res) => {
+    res.render('realTimeProducts');
 });
 
 export default router;

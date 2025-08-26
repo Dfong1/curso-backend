@@ -1,1 +1,91 @@
-<h2>Hola mundo</h2>
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+<script type="module" src="/scripts/realTimeProducts/realTimeProducts.js"></script>
+<div class="d-flex justify-content-between align-items-center">
+    <h2 class="m-0 p-0">Productos en tiempo real</h2>
+
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Agregar producto</button>
+</div>
+
+<div class="row" id="list-products">
+    {{#each products}}
+        <div class="col-md-4 col-sm-12 mt-3" data-id="{{this.id}}">
+            <div class="card">
+                <div class="card-body">
+                    <div class="product w-100">
+                        <div class="d-flex">
+                            <div class="justify-content-center align-items-center">
+                                <div class="" style="height: 150px;">
+                                    {{#if this.thumbnails.length}}
+                                        <img src="{{this.thumbnails.[0]}}" class="m-auto w-auto h-100" alt="{{this.title}}">
+                                    {{else}}
+                                        <p>No image available</p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>{{this.title}}</h3>
+                        <p><b>Precio:</b> {{this.price}}</p>
+                        <p>{{this.description}}</p>
+                        <p><b>Stock:</b> {{this.stock}}</p>
+                        <p><b>Categoría:</b> {{this.category}}</p>
+                        <div class="row w-100">
+                            <button class="col-8 btn btn-primary" disabled>Agregar al carrito</button>
+                            <button class="btn btn-danger col-4 delete-producto" data-id="{{this.id}}">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+
+<div class="modal fade" id="addProductModal">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"> Nuevo producto </h2>
+                <button class="btn btn-close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label for="title">Título</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="price">Precio</label>
+                            <input type="number" class="form-control" id="price" name="price" required>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="description">Descripción</label>
+                            <input type="text" class="form-control" id="description" name="description" required>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="stock">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" required>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="category">Categoría</label>
+                            <input type="text" class="form-control" id="category" name="category" required>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label for="code">Código</label>
+                            <input type="text" class="form-control" id="code" name="code" required>
+                        </div>
+                        {{!-- <div class="col-md-6 col-sm-12">
+                            <label for="thumbnails">Imágenes</label>
+                            <input type="text" class="form-control" id="thumbnails" name="thumbnails">
+                        </div> --}}
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" form="addProductForm">Agregar producto</button>
+            </div>
+        </div>
+    </div>
+</div>

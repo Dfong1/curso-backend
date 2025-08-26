@@ -33,7 +33,8 @@ class ProductManager {
         }
         products.push(product);
         await this.saveProducts(products);
-        return {product: product.title};
+        console.log(product)
+        return product;
     }
 
     async saveProducts(prods){
